@@ -78,7 +78,7 @@ function displayProducts(products) {
         buttonContainer.classList.add('product-button-container');
 
         const viewDetailsButton = document.createElement('a');
-        viewDetailsButton.href = `oneproduct.html?id=${product.id}`;
+        viewDetailsButton.href = `/HTML/oneproduct.html?id=${product.id}`;
         viewDetailsButton.textContent = "View Details";
         viewDetailsButton.classList.add('view-details');
         buttonContainer.appendChild(viewDetailsButton);
