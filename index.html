@@ -12,14 +12,14 @@
     <header>
         <div class="left">
             <a href="index.html">
-                <p><button id="filter-all">All</button></p>
-            </a>
+            <p><button id="filter-all">All</button></p>
+        </a>
             <a href="HTML/mens.html">
-                <p><button id="filter-men">Men</button></p>
-            </a>
-            <a href="HTML/womens.html">
-                <p><button id="filter-women">Women</button></p>
-            </a>
+            <p><button id="filter-men">Men</button></p>
+        </a>
+        <a href="HTML/womens.html">
+            <p><button id="filter-women">Women</button></p>
+        </a>
         </div>
         <div class="middle">
             <a href="index.html">
@@ -45,8 +45,28 @@
 
     <main>
         <div id="loading" class="hidden"></div>
-       
-        <div id="products"></div>
+        
+        <div id="products">
+            <div class="product">
+                <h2>Product 1</h2>
+                <img src="IMAGES/product1.jpg" alt="Product 1">
+                <p>Price: $20.00</p>
+                <div class="product-button-container">
+                    <a href="HTML/oneproduct.html?id=1" class="view-details">View Details</a>
+                </div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <h2>Product 2</h2>
+                <img src="IMAGES/product2.jpg" alt="Product 2">
+                <p>Price: $25.00</p>
+                <div class="product-button-container">
+                    <a href="HTML/oneproduct.html?id=2" class="view-details">View Details</a>
+                </div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+        </div>
     </main>
 
     <div id="toast-container" class="hidden">

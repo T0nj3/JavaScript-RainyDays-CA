@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartIconContainer = document.getElementById('cart-icon-container');
     const cartDropdown = document.getElementById('cart-dropdown');
     const closeDropdownButton = document.getElementById('close-dropdown');
-    const loadingIndicator = document.getElementById('loading');
 
     cartIconContainer.addEventListener('click', () => {
         cartDropdown.classList.toggle('hidden');
@@ -13,66 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
         cartDropdown.classList.add('hidden');
     });
 
-    processProducts();
     updateCartCount(); 
 });
 
-const API_RAINYDAYS_URL = "https://v2.api.noroff.dev/rainy-days";
-
-async function getDataAsyncAwait() {
-    try {
-        const loadingIndicator = document.getElementById('loading'); 
-        loadingIndicator.classList.remove('hidden'); 
-        const response = await fetch(API_RAINYDAYS_URL);
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const json = await response.json();
-        return json;
-    } catch (error) {
-        console.error('Fetch error:', error);
-        document.getElementById('products').innerHTML = "<p>Could not load products. Please try again later.</p>";
-    } finally {
-        const loadingIndicator = document.getElementById('loading'); 
-        loadingIndicator.classList.add('hidden'); 
-    }
-}
-
-async function processProducts() {
-    const data = await getDataAsyncAwait();
-    if (data && data.data) {
-        const products = data.data;
-        displayProducts(products);
-    } else {
-        console.log("No data available");
-    }
-}
-
-function displayProducts(products) {
-    const productsContainer = document.getElementById('products');
-    productsContainer.innerHTML = ''; // Tømmer produktsiden
-
-    products.forEach(product => {
-        // Dynamisk generere HTML for hvert produkt
-        const productDiv = document.createElement('div');
-        productDiv.classList.add('product');
-
-        productDiv.innerHTML = `
-            <h2>${product.title}</h2>
-            <img src="${product.image.url}" alt="${product.image.alt}">
-            <p>${product.discountedPrice ? `Discounted Price: <strong>$${product.discountedPrice.toFixed(2)}</strong>` : `Price: $${product.price.toFixed(2)}`}</p>
-            <div class="product-button-container">
-                <a href="../HTML/oneproduct.html?id=${product.id}" class="view-details">View Details</a>
-            </div>
-            <button class="add-to-cart-button">Add to Cart</button>
-        `;
-
-        
-        productDiv.querySelector('.add-to-cart-button').addEventListener('click', () => addToCart(product));
-
-        productsContainer.appendChild(productDiv);
-    });
-}
+// Ingen dynamisk generering av produkter nødvendig
 
 function addToCart(product) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -94,7 +37,7 @@ function showToast(message) {
 
     toastMessage.textContent = message;  
     toastContainer.classList.add('show');  
-   
+
     setTimeout(() => {
         toastContainer.classList.remove('show');
     }, 3000);
