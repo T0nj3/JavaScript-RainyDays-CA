@@ -62,12 +62,12 @@ function displayProducts(products) {
             <img src="${product.image.url}" alt="${product.image.alt}">
             <p>${product.discountedPrice ? `Discounted Price: <strong>$${product.discountedPrice.toFixed(2)}</strong>` : `Price: $${product.price.toFixed(2)}`}</p>
             <div class="product-button-container">
-                <a href="HTML/oneproduct.html?id=${product.id}" class="view-details">View Details</a>
+                <a href="../HTML/oneproduct.html?id=${product.id}" class="view-details">View Details</a>
             </div>
             <button class="add-to-cart-button">Add to Cart</button>
         `;
 
-        // Legg til "Add to Cart"-funksjonalitet
+        
         productDiv.querySelector('.add-to-cart-button').addEventListener('click', () => addToCart(product));
 
         productsContainer.appendChild(productDiv);
