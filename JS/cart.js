@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const checkoutButton = document.createElement('button');
     checkoutButton.textContent = 'Proceed to Payment';
     checkoutButton.addEventListener('click', () => {
-        window.location.href = '/HTML/payment.html'; 
+        window.location.href = "../HTML/payment.html"; 
     });
     cartContainer.appendChild(checkoutButton);
 });

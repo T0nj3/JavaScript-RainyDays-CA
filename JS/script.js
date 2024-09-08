@@ -50,46 +50,25 @@ async function processProducts() {
 
 function displayProducts(products) {
     const productsContainer = document.getElementById('products');
-    productsContainer.innerHTML = '';
+    productsContainer.innerHTML = ''; // Tømmer produktsiden
 
     products.forEach(product => {
+        // Dynamisk generere HTML for hvert produkt
         const productDiv = document.createElement('div');
         productDiv.classList.add('product');
 
-        const title = document.createElement('h2');
-        title.textContent = product.title;
-        productDiv.appendChild(title);
+        productDiv.innerHTML = `
+            <h2>${product.title}</h2>
+            <img src="${product.image.url}" alt="${product.image.alt}">
+            <p>${product.discountedPrice ? `Discounted Price: <strong>$${product.discountedPrice.toFixed(2)}</strong>` : `Price: $${product.price.toFixed(2)}`}</p>
+            <div class="product-button-container">
+                <a href="HTML/oneproduct.html?id=${product.id}" class="view-details">View Details</a>
+            </div>
+            <button class="add-to-cart-button">Add to Cart</button>
+        `;
 
-        const image = document.createElement('img');
-        image.src = product.image.url;
-        image.alt = product.image.alt;
-        productDiv.appendChild(image);
-
-        const price = document.createElement('p');
-        if (product.discountedPrice && product.discountedPrice < product.price) {
-            price.innerHTML = `Discounted Price: <strong>$${product.discountedPrice.toFixed(2)}</strong>`;
-        } else {
-            price.textContent = `Price: $${product.price.toFixed(2)}`;
-        }
-        productDiv.appendChild(price);
-
-        
-        const buttonContainer = document.createElement('div');
-        buttonContainer.classList.add('product-button-container');
-
-        const viewDetailsButton = document.createElement('a');
-        viewDetailsButton.href = "../HTML/oneproduct.html?id=${product.id}";
-        viewDetailsButton.textContent = "View Details";
-        viewDetailsButton.classList.add('view-details');
-        buttonContainer.appendChild(viewDetailsButton);
-
-        productDiv.appendChild(buttonContainer);
-
-        const addToCartButton = document.createElement('button');
-        addToCartButton.textContent = 'Add to Cart';
-        addToCartButton.classList.add('add-to-cart-button');
-        addToCartButton.onclick = () => addToCart(product);
-        productDiv.appendChild(addToCartButton);
+        // Legg til "Add to Cart"-funksjonalitet
+        productDiv.querySelector('.add-to-cart-button').addEventListener('click', () => addToCart(product));
 
         productsContainer.appendChild(productDiv);
     });
@@ -106,8 +85,6 @@ function addToCart(product) {
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartCount();
     updateDropdown();
-
-    
     showToast(`${product.title} has been added to the cart`);
 }
 
@@ -117,7 +94,6 @@ function showToast(message) {
 
     toastMessage.textContent = message;  
     toastContainer.classList.add('show');  
-
    
     setTimeout(() => {
         toastContainer.classList.remove('show');
@@ -227,11 +203,4 @@ function removeFromCart(index) {
     localStorage.setItem('cart', JSON.stringify(cart));
     updateDropdown();
     updateCartCount();
-}
-
-function filterProducts(category) {
-    getDataAsyncAwait().then(data => {
-        const products = data.data.filter(product => product.category === category);
-        displayProducts(products);
-    });
 }
