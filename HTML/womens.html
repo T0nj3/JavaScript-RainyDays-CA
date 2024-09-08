@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Damejakker</title>
-    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="../index.css">
     <script src="https://kit.fontawesome.com/c208c464c3.js" crossorigin="anonymous"></script>
     <script src="../JS/womens.js" defer></script>
 </head>
@@ -12,16 +12,15 @@
     <header>
         <div class="left">
             <p><button id="filter-all">All</button></p>
-            <a href="../HTML/mens.html">
-            <p><button id="filter-men">Men</button></p>
-        </a>
-        <a href="/index.html">
-            <p><button id="filter-women">Women</button></p>
-        </a>
+            <a href="mens.html">
+                <p><button id="filter-men">Men</button></p>
+            </a>
+            <a href="../index.html">
+                <p><button id="filter-women">Women</button></p>
+            </a>
         </div>
-       
         <div class="middle">
-            <a href="/index.html">
+            <a href="../index.html">
                 <img src="../IMAGES/Bilde1.png" alt="">
             </a>
         </div>
@@ -38,7 +37,7 @@
                 <button id="close-dropdown" class="close-button">×</button> 
                 <div id="cart-items"></div>
                 <div id="cart-total">Your cart is empty.</div>
-                <a id="go-to-cart" href="../HTML/cart.html" class="hidden">Go to Cart</a>
+                <a id="go-to-cart" href="cart.html" class="hidden">Go to Cart</a>
             </div>
         </div>
     </header>
@@ -47,13 +46,11 @@
         <h1>Womens jackets</h1>
         <div id="products"></div>
 
-       
         <div id="toast-container" class="hidden">
             <i class="fa-solid fa-check" style="color: #63E6BE;"></i> 
             <span id="toast-message"></span>
         </div>
 
-     
         <div id="loading" class="hidden">Loading...</div>
     </main>
 
