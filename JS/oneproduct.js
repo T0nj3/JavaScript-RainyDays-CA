@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeDropdownButton = document.getElementById('close-dropdown');
 
     cartIconContainer.addEventListener('click', () => {
-        cartDropdown.classList.toggle('hidden');
+        cartDropdown.classList.toggle('hidden');   
         updateDropdown(); 
     });
 
